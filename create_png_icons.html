@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create PNG Icons</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      margin: 10px;
+    }
+    .instructions {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .download-links {
+      margin-top: 20px;
+    }
+    .download-links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 5px 10px;
+      background-color: #1d9bf0;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Twitter AI Assistant Icon Generator</h1>
+  
+  <div class="instructions">
+    <h2>Instructions:</h2>
+    <p>This page generates PNG icons for the Twitter AI Assistant Chrome extension. The icons are drawn using HTML5 Canvas and can be downloaded as PNG files.</p>
+    <p>After generating the icons, download each one and place them in the <code>images</code> folder of your extension.</p>
+  </div>
+  
+  <h2>16x16 Icon</h2>
+  <canvas id="icon16" width="16" height="16"></canvas>
+  
+  <h2>48x48 Icon</h2>
+  <canvas id="icon48" width="48" height="48"></canvas>
+  
+  <h2>128x128 Icon</h2>
+  <canvas id="icon128" width="128" height="128"></canvas>
+  
+  <div class="download-links">
+    <h2>Download Icons:</h2>
+    <a id="download16" href="#" download="icon16.png">Download 16x16 Icon</a>
+    <a id="download48" href="#" download="icon48.png">Download 48x48 Icon</a>
+    <a id="download128" href="#" download="icon128.png">Download 128x128 Icon</a>
+  </div>
+  
+  <script>
+    // Function to draw Twitter bird icon
+    function drawTwitterIcon(ctx, size) {
+      const scale = size / 128;
+      
+      // Background
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#1DA1F2');
+      gradient.addColorStop(1, '#0D8ECF');
+      
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, size * 0.15);
+      ctx.fill();
+      
+      // Twitter bird (simplified for small sizes)
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      
+      if (size <= 16) {
+        // Very simplified for 16x16
+        ctx.moveTo(4 * scale, 6 * scale);
+        ctx.bezierCurveTo(
+          5 * scale, 5 * scale,
+          8 * scale, 5 * scale,
+          10 * scale, 7 * scale
+        );
+        ctx.bezierCurveTo(
+          12 * scale, 5 * scale,
+          14 * scale, 6 * scale,
+          12 * scale, 8 * scale
+        );
+        ctx.bezierCurveTo(
+          12 * scale, 10 * scale,
+          10 * scale, 12 * scale,
+          6 * scale, 12 * scale
+        );
+        ctx.bezierCurveTo(
+          8 * scale, 11 * scale,
+          9 * scale, 10 * scale,
+          8 * scale, 9 * scale
+        );
+        ctx.bezierCurveTo(
+          6 * scale, 9 * scale,
+          5 * scale, 8 * scale,
+          4 * scale, 6 * scale
+        );
+      } else {
+        // More detailed for larger sizes
+        ctx.moveTo(25 * scale, 25 * scale);
+        ctx.bezierCurveTo(
+          25 * scale, 25 * scale,
+          40 * scale, 20 * scale,
+          50 * scale, 30 * scale
+        );
+        ctx.bezierCurveTo(
+          60 * scale, 20 * scale,
+          70 * scale, 25 * scale,
+          65 * scale, 35 * scale
+        );
+        ctx.bezierCurveTo(
+          75 * scale, 30 * scale,
+          80 * scale, 35 * scale,
+          75 * scale, 45 * scale
+        );
+        ctx.bezierCurveTo(
+          75 * scale, 60 * scale,
+          60 * scale, 80 * scale,
+          40 * scale, 75 * scale
+        );
+        ctx.bezierCurveTo(
+          25 * scale, 75 * scale,
+          15 * scale, 65 * scale,
+          25 * scale, 60 * scale
+        );
+        ctx.bezierCurveTo(
+          15 * scale, 60 * scale,
+          10 * scale, 50 * scale,
+          20 * scale, 45 * scale
+        );
+        ctx.bezierCurveTo(
+          15 * scale, 35 * scale,
+          20 * scale, 30 * scale,
+          25 * scale, 25 * scale
+        );
+      }
+      
+      ctx.fill();
+      
+      // AI Badge
+      const badgeSize = size * 0.25;
+      const badgeX = size * 0.75;
+      const badgeY = size * 0.25;
+      
+      ctx.fillStyle = '#FF5722';
+      ctx.beginPath();
+      ctx.arc(badgeX, badgeY, badgeSize, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // AI Text (only for larger icons)
+      if (size >= 48) {
+        ctx.fillStyle = 'white';
+        ctx.font = `bold ${badgeSize}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('AI', badgeX, badgeY);
+      }
+    }
+    
+    // Draw icons
+    const canvas16 = document.getElementById('icon16');
+    const ctx16 = canvas16.getContext('2d');
+    drawTwitterIcon(ctx16, 16);
+    
+    const canvas48 = document.getElementById('icon48');
+    const ctx48 = canvas48.getContext('2d');
+    drawTwitterIcon(ctx48, 48);
+    
+    const canvas128 = document.getElementById('icon128');
+    const ctx128 = canvas128.getContext('2d');
+    drawTwitterIcon(ctx128, 128);
+    
+    // Set up download links
+    document.getElementById('download16').href = canvas16.toDataURL('image/png');
+    document.getElementById('download48').href = canvas48.toDataURL('image/png');
+    document.getElementById('download128').href = canvas128.toDataURL('image/png');
+  </script>
+</body>
+</html>
