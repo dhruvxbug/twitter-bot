@@ -1,3 +1,7 @@
+## Disclaimer
+
+This extension is for educational purposes only. Use responsibly and in accordance with Twitter's terms of service. Automated interactions may violate Twitter's rules, so use at your own risk. (Shadow ban or Twitter (X) warnings -personal experience) 
+
 # Twitter AI Assistant Chrome Extension
 
 A Chrome extension that automates Twitter interactions using AI-generated content focused on Indian tech and software development topics.
@@ -52,11 +56,3 @@ A Chrome extension that automates Twitter interactions using AI-generated conten
 - Your GROQ API key is stored locally in Chrome's secure storage
 - The extension only operates on Twitter domains (twitter.com and x.com)
 - No data is collected or transmitted to third parties
-
-## Disclaimer
-
-This extension is for educational purposes only. Use responsibly and in accordance with Twitter's terms of service. Automated interactions may violate Twitter's rules, so use at your own risk.
-
-## License
-
-MIT
